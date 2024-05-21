@@ -1781,3 +1781,4 @@ print(sorted(op1,reverse=True))'''
 arr=[1,2,3,4,5]
 for i in range(len(arr)):
     idx=i-len(arr)
+    

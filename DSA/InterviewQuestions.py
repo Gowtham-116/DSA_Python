@@ -531,9 +531,24 @@ class LinkedList:
             slow = slow.next
             fast = fast.next.next
         return slow.__dict__
-             
+    
+    def merge_append(self,ll2):
+        print(self,ll2.head)
+        curr=self.head
+        while curr:
+            if curr.next is None:
+                print(self,ll2.head)
+                curr.next=ll2.head
+                self.tail=ll2.tail
+                return self,self.head.__dict__,self.tail.__dict__,self.length
+            curr=curr.next
+            self.length+=1
+    
+    def merge_idx(self,idx):
+        pass
+        
 ll=LinkedList()
-print(ll.__dict__)
+# print(ll.__dict__)
 ll.append('1')
 ll.append('1')
 ll.append('3')
@@ -541,23 +556,31 @@ ll.append('2')
 ll.append('9')
 ll.append('4')
 ll.append('8')
-print('Get method:',ll.get(2))
-print('Search method:',ll.search('11'))
+# print('Get method:',ll.get(2))
+# print('Search method:',ll.search('11'))
 # print('Pop method:',ll.pop())
-print(ll)    
+
+print('linked list one:',ll)    
 # ll.reverse()
 # print(ll)
-print(ll.duplicate_check())
-print(ll.remove_dup())
-print(ll)
-print(ll.mid_node())
+# print(ll.duplicate_check())
+# print(ll.remove_dup())
+# print(ll)
+# print(ll.mid_node())
 
 
+ll2=LinkedList()
+# print(ll.__dict__)
+ll2.append('5')
+ll2.append('3')
+ll2.append('6')
+ll2.append('7')
+ll2.append('9')
+ll2.append('0')
 
+print('linked list two:',ll2)  
 
-
-
-
+print(ll.merge_append(ll2))
 
 
 
