@@ -184,16 +184,16 @@ class CSLL:
         
     def __str__(self) -> str:
         curr=self.head
+        # print('curr',curr)
         csl=[]
-        count=0
         while curr:
             csl.append(curr.value)
             curr=curr.next
             # print(str(csl))
-            count+=1
-            if count==self.length:
+            if curr==self.head:
                 return str(csl)
-            #     print(str(csl))           
+            #     print(str(csl))
+        return str(csl)
       
     def append(self,value):
         new_node=Node(value)
@@ -208,24 +208,157 @@ class CSLL:
             self.tail=new_node
             self.tail.next=self.head #new_node.next=new_node
             self.length+=1
-        print(f'{self.head}\n{self.head.next}{self.tail}\n{self.tail.next}-')
+        # print(f'{self.head}\n{self.head.next}\n{self.tail}\n{self.tail.next}-')
             
     def prepend(self,value):
         new_node=Node(value)
-        # curr=self.head
-        new_node.next=self.head
-        self.head=new_node
-        self.tail.next=new_node
+        if self.head==None:
+            self.head=new_node
+            self.tail=new_node
+            self.tail.next=new_node
+        else:
+            # curr=self.head
+            new_node.next=self.head
+            self.head=new_node
+            self.tail.next=new_node
         self.length+=1
-        print(f'{self.head}\n{self.head.next.__dict__}{self.tail.__dict__}\n{self.tail.next.__dict__}-')
-       
+        # print(f'{self.head}\n{self.head.next.__dict__}\n{self.tail.__dict__}\n{self.tail.next.__dict__}-')
+        
+    def insert(self,idx,value):
+        new_node=Node(value)
+        if self.head is None:
+            self.head=new_node
+            self.tail=new_node
+            self.tail.next=new_node
+            self.length+=1
+        else:
+            curr=self.head
+            if idx==0:
+                new_node.next=curr
+                self.head=new_node
+                self.tail.next=self.head
+                self.length+=1
+            else:
+                while curr:
+                    if idx>=1 and idx<self.length:
+                        new_node.next=curr.next
+                        curr.next=new_node
+                        self.length+=1
+                        break
+                    if idx>self.length or idx<0:
+                        try:
+                            # idx=0
+                            new_node.next=curr
+                            self.head=new_node
+                            self.tail.next=self.head
+                            self.length+=1
+                            # return None
+                        except:
+                            Exception('index out of range')
+                        break
+                    curr=curr.next
+        # print(f'{self.head}\n{self.head.next.__dict__}\n{self.tail.__dict__}\n{self.tail.next.__dict__}*')
+        
+                        
+    def pop_first(self):
+        popped_node=self.head
+        if self.length==1:
+            self.head=None
+            self.tail=None
+            popped_node.next=None
+            self.length-=1
+        else:
+            self.head=self.head.next
+            self.tail.next=self.head
+            popped_node.next=None
+            self.length-=1
+        return popped_node.__dict__
+    
+    # def pop(self,index=None):
+    #     popped_node=self.tail
+    #     if self.length==0:
+    #         return None
+    #     else:
+    #         if self.length==1:
+    #             self.head=None
+    #             self.tail=None
+    #         elif self.length==2:
+    #             self.tail=self.head
+    #             self.tail.next=self.head
+    #         else:
+    #             curr=self.head
+    #             for _ in range(self.length-2):
+    #                 curr=curr.next
+    #             self.tail=curr
+    #             curr.next=self.head
+    #             popped_node.next=None
+    #     self.length-=1
+    def pop(self):
+        popped_node=self.tail
+        if self.length==0:
+            return None
+        elif self.length==1:
+            self.head=None
+            self.tail=None
+            self.length-=1
+        else:
+            curr=self.head
+            while curr.next is not self.tail:
+                curr=curr.next
+            curr.next=self.head
+            self.tail=curr
+            popped_node.next=None
+            self.length-=1
+    def remove(self,idx):
+        curr=self.head
+        if idx>0 and idx<self.length:
+            for _ in range(idx-1):
+                curr=curr.next
+            print('Removed node:', curr.next.value)
+            curr.next=curr.next.next
+            if idx==self.length-1:
+                curr.next=self.head
+                self.tail=curr
+                self.length-=1
+                # self.tail.next=self.head
+        elif idx==0:
+            if self.length==1:
+                self.head=None
+                self.tail=None
+            else:
+                self.head=curr.next
+                self.tail.next=self.head
+                curr.next=None
+            self.length-=1
+        else:
+            raise IndexError("Index out of range")
+                
+        
 csll=CSLL()
 csll.append(10)
 csll.append(11)
 csll.append(12)
-csll.append(13)
+csll.prepend(13)
 csll.prepend(111)
-print(csll.head.next.next.value)
+# print('CSLL: ', csll.__dict__)
+csll.insert(0,110)
+# print('CSLL: ', csll.__dict__)
+csll.insert(9,'a')
+# print(csll.pop_first())
+# csll.pop_first()
+# print('head: ',csll.head.__dict__)
+# print('CSLL: ', csll.__dict__,'\n',csll)
 print(csll)
-
-        
+print('Head:', csll.head.__dict__)
+print('tail:', csll.tail.__dict__)
+print('length:', csll.length)
+csll.pop()
+print(csll)
+print('Head:', csll.head.__dict__)
+print('tail:', csll.tail.__dict__)
+print('length:', csll.length)
+csll.remove(2)
+print(csll)
+print('Head:', csll.head.__dict__)
+print('tail:', csll.tail.__dict__)
+print('length:', csll.length)
