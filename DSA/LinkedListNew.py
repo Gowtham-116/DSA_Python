@@ -333,8 +333,6 @@ class CSLL:
         else:
             raise IndexError("Index out of range")
                 
-                acd
-        
 csll=CSLL()
 csll.append(10)
 csll.append(11)
