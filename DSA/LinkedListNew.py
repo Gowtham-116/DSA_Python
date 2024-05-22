@@ -330,9 +330,10 @@ class CSLL:
                 self.tail.next=self.head
                 curr.next=None
             self.length-=1
-        # else:
-        #     raise IndexError("Index out of range")
+        else:
+            raise IndexError("Index out of range")
                 
+                acd
         
 csll=CSLL()
 csll.append(10)
