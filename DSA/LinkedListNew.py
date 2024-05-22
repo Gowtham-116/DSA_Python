@@ -330,8 +330,8 @@ class CSLL:
                 self.tail.next=self.head
                 curr.next=None
             self.length-=1
-        else:
-            raise IndexError("Index out of range")
+        # else:
+        #     raise IndexError("Index out of range")
                 
         
 csll=CSLL()
@@ -349,9 +349,9 @@ csll.insert(9,'a')
 # print('head: ',csll.head.__dict__)
 # print('CSLL: ', csll.__dict__,'\n',csll)
 print(csll)
-print('Head:', csll.head.__dict__)
-print('tail:', csll.tail.__dict__)
-print('length:', csll.length)
+# print('Head:', csll.head.__dict__)
+# print('tail:', csll.tail.__dict__)
+# print('length:', csll.length)
 csll.pop()
 print(csll)
 print('Head:', csll.head.__dict__)
