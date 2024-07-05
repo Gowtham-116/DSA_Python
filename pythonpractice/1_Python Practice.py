@@ -336,7 +336,22 @@ mylist1 = [1,2,3,4,5]
 # print(mytripler(13))
 
 
+def addStrings(num1: str, num2: str) -> str:
+    str_to_int = {str(i):i for i in range(10)}
+    char_list = []
+    remain = 0
+    i = 0
+    for i in range(max(len(num1), len(num2))):
+        vars1 = str_to_int[num1[len(num1)-1-i]] if len(num1)-1-i>=0 else 0
+        vars2 = str_to_int[num2[len(num2)-1-i]] if len(num2)-1-i>=0 else 0
+        res = vars1+vars2+remain
+        remain = res//10
+        char_list.insert(0,str(res%10))
+    if remain:
+        char_list.insert(0,"1")
+    return res
 
+print(addStrings('1219','9001'),sum([1219,9001]))
 
 
 

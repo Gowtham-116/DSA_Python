@@ -5,13 +5,13 @@ print(e+e)
 print(d+d)'''
 #wap to print fibonacci number series
 #0,1,1,2,3,5,8,13
-f=0
-s=1   
-for i  in range(1,110):
-    c=f+s
-    s=f
-    f=c
-    print(i,c)
+# f=0
+# s=1   
+# for i  in range(1,110):
+#     c=f+s
+#     s=f
+#     f=c
+#     print(i,c)
 
 # def fib():
 #     a,b=0,1
@@ -1424,10 +1424,34 @@ gowtham.disp()
 
 
 
+# def findSmallest(arr): 
+#   smallest = arr[0] 
+#   smallest_index = 0  
+#   for i in range(1, len(arr)):
+#     if arr[i] < smallest:
+#       smallest = arr[i]
+#       smallest_index = i
+#   return smallest_index
 
+# def selectionSort(arr): 
+#     newArr = []
+#     for _ in range(len(arr)):
+#         smallest = findSmallest(arr)     
+#         newArr.append(arr.pop(smallest))
+#     return newArr
+# print(selectionSort([5, 3, 6, 2, 10]))
 
+inp=['5', '3', '6', '7', '1', '1', '3', '2', '9', '4', '9', '0']
+print(inp,id(inp))      
 
-
+first=inp[0]
+for i in range(0,len(inp)):
+    for j in range(i,len(inp)):
+        if inp[i]>inp[j]:
+            inp[j],inp[i]=inp[i],inp[j]
+            # print(inp[j],inp[i],inp)
+print(inp,id(inp))      
+        
 
 
 
